@@ -34,6 +34,10 @@ Constraints:
 1 ≤ |s| ≤ 10
 */
 
+#include<iostream>
+using namespace std;
+
+
 class Solution{
   public:
     /*You are required to complete this method */
