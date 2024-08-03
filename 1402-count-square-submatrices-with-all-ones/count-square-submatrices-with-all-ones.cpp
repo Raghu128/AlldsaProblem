@@ -13,16 +13,44 @@ public:
         return dp[i][j] = min(right, min(diag, bottom)) + 1;
 
     }
-    int countSquares(vector<vector<int>>& mat) {
+
+    int solveTab(vector<vector<int>>& mat) {
         int n = mat.size(), m = mat[0].size();
-        vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
+        vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
+
+        for(int i = n-1; i >= 0; i--) {
+            for(int j = m-1; j >= 0; j--) {
+                if(mat[i][j] == 0) continue;
+                int right = dp[i][j+1];
+                int diag = dp[i+1][j+1];
+                int bottom = dp[i+1][j];
+
+                dp[i][j] = min(right, min(diag, bottom)) + 1;
+            }
+        }
+
         int ans = 0;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(mat[i][j] == 1) ans += solve(i, j, mat, dp);
+        for(int i = n-1; i >= 0; i--) {
+            for(int j = m-1; j >= 0; j--) {
+                if(mat[i][j] == 1) ans += dp[i][j];
             }
         }
 
         return ans;
+    }
+
+    int countSquares(vector<vector<int>>& mat) {
+        return solveTab(mat);
+
+        // int n = mat.size(), m = mat[0].size();
+        // vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
+        // int ans = 0;
+        // for(int i = 0; i < n; i++) {
+        //     for(int j = 0; j < m; j++) {
+        //         if(mat[i][j] == 1) ans += solve(i, j, mat, dp);
+        //     }
+        // }
+
+        // return ans;
     }
 };
