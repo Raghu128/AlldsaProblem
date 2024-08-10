@@ -16,31 +16,16 @@ public:
         TreeNode* trav = root;
 
         stack<TreeNode*> st;
+        if(root)
+            st.push(root);
+        while(st.size()) {
+            TreeNode* top = st.top(); st.pop();
+            ans.insert(ans.begin(), top->val);
 
-        while(st.size() || trav) {
-            if(trav) {
-                st.push(trav);
-                trav = trav->left;
-            }
-            else {
-                TreeNode* temp = st.top()->right;
-
-                if(temp == NULL) {
-                    temp = st.top(); st.pop();
-
-                    ans.push_back(temp->val);
-                    while(st.size() && temp == st.top()->right) {
-                        temp = st.top(); st.pop();
-                        ans.push_back(temp->val);
-                    }
-
-                    // trav = temp;
-                }
-                else trav = temp;
-                
-            }
+            if(top->left) st.push(top->left);
+            if(top->right) st.push(top->right);
         }
-
+        
         return ans;
     }
 };
