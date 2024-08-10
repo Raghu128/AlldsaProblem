@@ -11,28 +11,40 @@
  */
 class Solution {
 public:
-    int maxi = INT_MIN;
-    pair<int,int> solve(TreeNode* root) {
-        if(!root) return {0, 0};
+int findMaxPathSum(TreeNode* root, int &maxi) {
+        // Base case: If the current node is null, return 0
+        if (root == nullptr) {
+            return 0;
+        }
 
-        pair<int,int> left = solve(root->left);
-        pair<int,int> right = solve(root->right);
+        // Calculate the maximum path sum
+        // for the left and right subtrees
+        int leftMaxPath = max(0, findMaxPathSum(root->left, maxi));
+        int rightMaxPath = max(0, findMaxPathSum(root->right, maxi));
 
-        int leftSum = root->val + max(0, max(left.first, right.first));
-        maxi = max(maxi, root->val);
-        int rightSum = root->val ;
+        // Update the overall maximum
+        // path sum including the current node
+        maxi = max(maxi, leftMaxPath + rightMaxPath + root->val);
 
-        if(left.first > 0) rightSum += left.first;
-        if(right.first > 0) rightSum += right.first;
-
-        rightSum = max(rightSum, max(left.second, right.second));
-        return {leftSum, rightSum};
+        // Return the maximum sum considering
+        // only one branch (either left or right)
+        // along with the current node
+        return max(leftMaxPath, rightMaxPath) + root->val;
     }
+
+    // Function to find the maximum
+    // path sum for the entire binary tree
     int maxPathSum(TreeNode* root) {
-        pair<int,int> ans = solve(root);
-
-        int maxSum = max(ans.first, ans.second);
-        if(maxSum == 0) return maxi;
-        return maxSum;
+        // Initialize maxi to the
+        // minimum possible integer value
+        int maxi = INT_MIN; 
+         // Call the recursive function to
+         // find the maximum path sum
+        findMaxPathSum(root, maxi);
+        // Return the final maximum path sum
+        return maxi; 
     }
+    // int maxPathSum(TreeNode* root) {
+        
+    // }
 };
