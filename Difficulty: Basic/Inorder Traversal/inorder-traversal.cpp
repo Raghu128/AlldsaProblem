@@ -33,26 +33,27 @@ class Solution {
   public:
     // Function to return a list containing the inorder traversal of the tree.
     vector<int> inOrder(Node* root) {
-        Node* curr1 = root;
+        Node* curr2 = root;
         vector<int> ans;
         
-        while(curr1) {
-            if(curr1->right) {
-                Node* temp = curr1->right;
-                while(temp->left) temp = temp->left;
-                
-                temp->left = curr1;
-                temp = curr1;
-                
-                curr1 = curr1->right;
-                temp->right = NULL;
-            }
-            else {
-                ans.insert(ans.begin(), curr1->data);
-                curr1 = curr1->left;
-                // break;
-            }
-        }
+        
+        while(curr2) {
+                    if(curr2->left) {
+                        Node* temp = curr2->left;
+                        while(temp->right) temp = temp->right;
+                        
+                        temp->right = curr2;
+                        temp = curr2;
+                        
+                        curr2 = curr2->left;
+                        temp->left = NULL;
+                    }
+                    else {
+                        ans.push_back(curr2->data);
+                        curr2 = curr2->right;
+                        // break;
+                    }
+                }
         
         return ans;
     }
