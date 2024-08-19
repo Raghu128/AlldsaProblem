@@ -12,54 +12,29 @@
 class BSTIterator {
 public:
     TreeNode* head = NULL;
-    TreeNode* curr = NULL;
+    stack<TreeNode*> st;
     BSTIterator(TreeNode* root) {
         head = root;
-        curr = root;
-        
+        st.push(root);
+        pushAll(root->left);
     }
     
     int next() {
-        if(curr == NULL) {
-            curr = head;
-            if(curr) return curr->val;
-            return -1;
-        }
-       
+        TreeNode* top = st.top(); st.pop();
+        pushAll(top->right);
 
-        while(curr->left) {
-            TreeNode* temp = curr->left;
-            while(temp->right) temp = temp->right;
-            
-            temp->right = curr;
-            temp = curr->left;
-            
-            curr->left = NULL;
-
-            curr = temp;
-        }
-
-        int ans = -1;
-        if(curr) ans = curr->val;
-        
-        curr = curr->right;
-        return ans;
+        return top->val;
     }
     
     bool hasNext() {
-        if(curr == NULL) {
-            return false;
-        }
+        return !st.empty();
+    }
 
-        // cout << curr->val << endl;
-        // if(curr->left) {
-        //     return true;
-        // }
-        // else if(curr->right){
-        //    return true;
-        // }
-        
-        return true;
+    void pushAll(TreeNode* root) {
+        while(root) {
+            st.push(root);
+            root = root->left;
+        }
     }
 };
 
