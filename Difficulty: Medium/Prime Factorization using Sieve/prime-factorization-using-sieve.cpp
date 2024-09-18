@@ -12,29 +12,15 @@ class Solution {
     void sieve() {}
 
     vector<int> findPrimeFactors(int n) {
-
-        vector<int> isPrime(n+1, 1);
-        // vector<int> ans;
-        for(int i = 2; i <= n; i++) {
-            if(isPrime[i]) {
-                // if(n%i == 0)
-                    // ans.push_back(i);
-                
-                // for(long long int j = i*i; j <= n; j+=i) {
-                //     isPrime[j] = 0;
-                // }
-            }
-        }
-        
         vector<int> ans;
         int num = n;
         for(int i = 2; i <= n; i++) {
-            if(isPrime[i]) {
+        
                 while(num && num%i == 0) {
                     ans.push_back(i);
                     num /= i;
                 }
-            }
+            if(num == 1) break;
         }
         
         return ans;
