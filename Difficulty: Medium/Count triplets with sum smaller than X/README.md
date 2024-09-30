@@ -1,0 +1,14 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/count-triplets-with-sum-smaller-than-x5549/1">Count triplets with sum smaller than X</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>arr[]</strong> of distinct integers of size <strong>n </strong>and a value <strong>sum</strong>, the task is to find the count of triplets <strong>(i, j, k)</strong>, having <strong>(i&lt;j&lt;k)&nbsp;</strong>with the sum of<strong> <strong>(arr[i] + arr[j] + arr[k])</strong>&nbsp;</strong>smaller than the given value sum.</span></p>
+<p><br><strong><span style="font-size: 18px;"><strong>Examples :</strong></span></strong></p>
+<pre><strong>
+<span style="font-size: 18px;"><strong>Input: n</strong></span></strong><span style="font-size: 18px;"> = 4, sum = 2, arr[] = {-2, 0, 1, 3}</span><strong><span style="font-size: 18px;">
+<strong>Output:</strong>  </span></strong><span style="font-size: 18px;">2</span><strong><span style="font-size: 18px;">
+<strong>Explanation</strong>: </span></strong><span style="font-size: 18px;">Below are triplets with sum less than 2 (-2, 0, 1) and (-2, 0, 3). </span>
+</pre>
+<pre><strong><span style="font-size: 18px;"><strong>Input: n</strong></span></strong><span style="font-size: 18px;"> = 5, sum = 12, arr[] = {5, 1, 3, 4, 7}</span><strong><span style="font-size: 18px;">
+<strong>Output:</strong> </span></strong><span style="font-size: 18px;">4</span><strong><span style="font-size: 18px;">
+<strong>Explanation</strong>: </span></strong><span style="font-size: 18px;">Below are triplets with sum less than 12 (1, 3, 4), (1, 3, 5), (1, 3, 7) and (1, 4, 5).
+</span></pre>
+<p><strong><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong> </span></strong><span style="font-size: 18px;">O(N<sup>2</sup>).</span><br><strong><span style="font-size: 18px;"><strong>Expected Auxiliary Space:</strong> </span></strong><span style="font-size: 18px;">O(1).</span></p>
+<div><br><strong><span style="font-size: 18px;"><strong>Constraints:</strong></span></strong><br><span style="font-size: 18px;">3 ≤ N ≤ 10<sup>3</sup></span></div>
+<div><span style="font-size: 18px;">-10<sup>3</sup>&nbsp;≤ arr[i]&nbsp;≤ 10<sup>3</sup></span></div></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Amazon</code>&nbsp;<code>SAP Labs</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>two-pointer-algorithm</code>&nbsp;<code>Arrays</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
