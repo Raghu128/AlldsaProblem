@@ -1,20 +1,24 @@
 class Solution {
 public:
     int carFleet(int target, vector<int>& position, vector<int>& speed) {
-        vector< pair<double,double> > arr;
-        int n = speed.size();
-        for(int i = 0; i < n; i++) arr.push_back({position[i], speed[i]});
-
-        sort(arr.begin(), arr.end());
-        reverse(arr.begin(), arr.end());
-        vector<double> timeStamp(n);
+        stack< double > st;
+        priority_queue< pair<double,double> > pq;
 
         int ans = 0;
-        for(int i = 0; i < n; i++) {
-            timeStamp[i] = (target-arr[i].first)/arr[i].second*1.0;
 
-            if(i > 0 && timeStamp[i-1] >= timeStamp[i]) timeStamp[i] = timeStamp[i-1];
-            else ans++;
+        int n = position.size();
+        for(int i = 0; i < n; i++) pq.push({position[i], speed[i]});
+
+        while(!pq.empty()) {
+            pair<double,double> top = pq.top(); pq.pop();
+            cout << top.first << endl;
+
+            double time = (target-top.first)/top.second*1.0;
+
+            
+            if(st.empty() || st.top() < time) st.push(time);
+            
+            ans = max(ans, (int)st.size()); 
         }
 
         return ans;
