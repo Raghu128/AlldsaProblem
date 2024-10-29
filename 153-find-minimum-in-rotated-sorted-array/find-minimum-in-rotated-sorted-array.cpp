@@ -11,7 +11,7 @@ public:
                 if(nums[start] < nums[end]) end = mid-1;
                 else {
                     if(nums[mid] > nums[end]) start = mid+1;
-                    else start = mid;
+                    else end = mid;
                 }
             }
             else {
