@@ -4,18 +4,32 @@ public:
         vector<int> ans;
         int n = nums.size();
         
-        for(int i = 0; i <= n-k; i++) {
-            bool flag = true;
-            for(int j = i+1; j < i+k; j++) {
-                if((nums[j-1] + 1) != nums[j]) {
-                    flag = false;
-                    break;
-                }
+        deque<pair<int,int>> dq;
+        for(int i = 0; i < k; i++) {
+            if(dq.empty() || (dq.back().first + 1) == nums[i]) dq.push_back({nums[i], i});
+            else {
+                dq.clear();
+                dq.push_back({nums[i], i});
+            }
+        }
+
+        if(dq.size() == k) ans.push_back(dq.back().first);
+        else ans.push_back(-1);
+
+        for(int i = k; i < n; i++) {
+            while(!dq.empty() && dq.front().second <= i-k) dq.pop_front();
+            
+            if(dq.empty() || (dq.back().first + 1) == nums[i]) dq.push_back({nums[i], i});
+            else {
+                dq.clear();
+                dq.push_back({nums[i], i});
             }
 
-            if(flag) ans.push_back(nums[i+k-1]);
+            if(dq.size() == k) ans.push_back(dq.back().first);
             else ans.push_back(-1);
         }
+       
+
 
         return ans;
     }
