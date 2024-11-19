@@ -2,7 +2,7 @@ class Solution {
 public:
     long long maximumSubarraySum(vector<int>& nums, int k) {
         unordered_map<int,bool> mp;
-        unordered_map<long long ,int> freq;
+        long long ans = 0;
 
         int n = nums.size();
         long long sum = 0;
@@ -20,17 +20,14 @@ public:
             mp[nums[last]] = true;
             last++;
             if((last-start) == k) {
-                freq[sum]++;
+                ans = max(ans, sum);
                 sum -= nums[start];
                 mp[nums[start]] = false;
                 start++;
             }
         }
 
-        long long ans = 0;
-        for(auto i : freq) {
-            ans = max(ans, i.first);
-        }
+        
         return ans;
     }
 };
