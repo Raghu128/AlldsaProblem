@@ -10,7 +10,7 @@ public:
             string row = "";
             if(i[0] == 0) {
                 for(auto j : i)
-                    row += to_string(1^j);
+                    row += to_string(!j);
             }
             else {
                 for(auto j : i)
