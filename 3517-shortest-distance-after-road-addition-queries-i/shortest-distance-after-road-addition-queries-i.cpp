@@ -1,7 +1,6 @@
 class Solution {
 public:
-    int givePath(vector<vector<int>> adj, int n) {
-        vector<int> dis(n, INT_MAX);
+    int givePath(vector<vector<int>> adj, int n, vector<int>& dis) {
         dis[0] = 0;
         queue< pair<int,int> > q;
         q.push({0, 0});
@@ -26,10 +25,12 @@ public:
         }
 
         vector<int> ans;
+        vector<int> dis(n, INT_MAX);
+
 
         for(auto i : queries) {
             adj[i[0]].push_back(i[1]);
-            ans.push_back(givePath(adj, n));
+            ans.push_back(givePath(adj, n, dis));
         }
 
         return ans;
