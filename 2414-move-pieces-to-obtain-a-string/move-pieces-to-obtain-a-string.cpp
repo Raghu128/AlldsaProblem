@@ -15,13 +15,14 @@ public:
                 if(waitL > 0) return false;
                 waitR++;
             }
-            if(goal == 'R') {
-                if(waitR == 0) return false;
-                waitR--;
-            }
+            
             if(curr == 'L') {
                 if(waitL == 0) return false;
                 waitL--;
+            }
+            if(goal == 'R') {
+                if(waitR == 0) return false;
+                waitR--;
             }
         }
 
