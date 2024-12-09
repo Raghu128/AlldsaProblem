@@ -7,7 +7,7 @@ public:
 
         for(int i = 1; i < n; i++) {
             prefix[i] = prefix[i-1];
-            if ((nums[i - 1] % 2 == 0 && nums[i] % 2 == 0) || (nums[i - 1] % 2 != 0 && nums[i] % 2 != 0)) {
+            if(nums[i - 1] % 2 == nums[i] % 2 ) {
                 prefix[i]++;
             }
         }
