@@ -1,18 +1,15 @@
 class Solution {
 public:
-    int diameter(int parent, int node, unordered_map<int,int>& dis, unordered_map<int,vector<int>>& adj) {
-        if(dis.find(node) != dis.end()) return dis[node];
+    int diameter(int parent, int node, unordered_map<int,vector<int>>& adj) {
 
         int ans = 0;
         for(auto i : adj[node]) {
             if(parent != i)
-                ans = max(ans, 1+diameter(node, i, dis, adj));
+                ans = max(ans, 1+diameter(node, i, adj));
         }
-        dis[node] = ans;
         return ans;
     }
     pair<int,int> findFarNode(int cnt, int node, int parent, unordered_map<int,vector<int>>& adj) {
-        // if(adj[node].size() == 1) return {cnt, node};
 
         pair<int,int> ans = {cnt, node};
         for(auto i : adj[node]) {
@@ -40,12 +37,11 @@ public:
         }
 
         int dia1 = 0, dia2 = 0;
-        unordered_map<int,int> dis1, dis2;
         pair<int,int> tree1 = findFarNode(0, 0, -1, adj1);
         pair<int,int> tree2 = findFarNode(0, 0, -1, adj2);
 
-        dia1 = diameter(-1, tree1.second,  dis1, adj1);
-        dia2 = diameter(-1, tree2.second,  dis2, adj2);
+        dia1 = diameter(-1, tree1.second, adj1);
+        dia2 = diameter(-1, tree2.second, adj2);
 
         if(n == 0 && m == 0) return 1;
         int d1 = dia1, d2 = dia2;
