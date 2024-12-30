@@ -21,7 +21,20 @@ public:
 
     int countGoodStrings(int low, int high, int zero, int one) {
         // Memoization table to store results for lengths from 0 to high
-        vector<int> dp(high + 1, -1);
-        return solve(0, zero, one, low, high, dp);
+        vector<int> dp(high + one+zero, 0);
+        // return solve(0, zero, one, low, high, dp);
+        for(int len = high; len >= 0; len--) {
+            int takeOne = dp[len+one];
+            int takeZero = dp[len+zero];
+
+            // Add counts if the length falls within the [low, high] range
+            if (len + one >= low && len + one <= high) takeOne += 1;
+            if (len + zero >= low && len + zero <= high) takeZero += 1;
+
+            // Store the result in the memoization table and return it
+            dp[len] = (takeOne + takeZero) % 1000000007;
+        }
+
+        return dp[0];
     }
 };
