@@ -17,11 +17,11 @@ public:
             }
         }
 
-        partial_sum(oper.begin(), oper.end(), oper.begin());
+        int sum = 0;
         for (int i = 0; i < n; i++) {
-            
+            sum += oper[i];
             char& c=s[i];
-            c=(oper[i]+c-'a')%26+'a';
+            c=(sum+c-'a')%26+'a';
             if (c<'a') c+=26; 
         }
 
